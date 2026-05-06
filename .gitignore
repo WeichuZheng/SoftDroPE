@@ -46,3 +46,7 @@ data/ruler/*.jsonl
 
 # Logs
 logs/
+
+# External projects (clone from upstream)
+ruler/.git
+
