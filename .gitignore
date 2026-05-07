@@ -44,6 +44,10 @@ results/*.json
 data/ruler/*.jsonl
 !data/.gitkeep
 
+# Training data (too large to upload)
+data/training/
+data/training/*
+
 # Logs
 logs/
 
