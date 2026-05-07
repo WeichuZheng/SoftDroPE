@@ -65,6 +65,21 @@ micromamba install -n softdrope transformers accelerate datasets tqdm scipy -c c
 micromamba run -n softdrope pip install wonderwords nltk tenacity
 ```
 
+### 3. 下载模型
+
+项目已配置使用 **Qwen2-0.5B** 模型（从ModelScope下载）：
+
+```bash
+# 模型位置
+checkpoints/Qwen2-0.5B/
+```
+
+如需重新下载：
+```python
+from modelscope.hub.snapshot_download import snapshot_download
+snapshot_download('qwen/Qwen2-0.5B', cache_dir='./checkpoints')
+```
+
 ## 使用方法
 
 ### 1. 位置编码模块测试
@@ -185,13 +200,68 @@ micromamba run -n softdrope python scripts/monitor_gpu.py \
 2. **网络**: 部分依赖需要从HuggingFace下载，如网络不通可使用ModelScope
 3. **当前模型**: 项目使用本地 `/data1/weichu/woshi/Qwen2.5-7B-Instruct` 模型
 
-## 后续工作
+## 后续工作 (Next Steps)
 
-- [ ] 实现完整的SoftDroPE训练管道
-- [ ] 在GPT-2上测试
-- [ ] 扩展到Llama-3-8B
-- [ ] 实现PI、NTK、YaRN的模型修改
-- [ ] 频率分析可视化
+### 阶段一：模型训练（当前阶段）
+
+#### 1. 准备训练数据
+```bash
+# 准备C4数据集子集（约10M tokens）
+# 或使用其他开源文本数据集
+```
+
+#### 2. 位置编码方法实现与训练
+需要实现以下方法的训练/微调：
+
+| 方法 | 描述 | 训练方式 |
+|-----|------|---------|
+| **RoPE** (Baseline) | 标准RoPE | 无需训练 |
+| **PI** | Position Interpolation | 8k序列微调 |
+| **NTK-aware** | NTK感知缩放 | 无需训练 |
+| **YaRN** | YaRN方法 | 无需训练 |
+| **DroPE** | 移除RoPE + 重校准 | 1000步轻量训练 |
+| **CoPE** | 软截断RoPE | 无需训练 |
+| **SoftDroPE** | DroPE + CoPE | 两阶段训练 |
+
+#### 3. 训练命令示例
+```bash
+# DroPE重校准训练
+cd /data2/weichu/CS7352/大作业
+CUDA_VISIBLE_DEVICES=0,1 micromamba run -n softdrope python \
+    src/training/recalibrator.py \
+    --model_path checkpoints/Qwen2-0.5B \
+    --output_dir checkpoints/drope_qwen0.5b \
+    --num_steps 1000 \
+    --learning_rate 1e-5 \
+    --batch_size 8
+```
+
+### 阶段二：模型评测
+
+#### 运行RULER基准测试
+```bash
+# 在不同长度上评测所有方法
+for method in rope pi ntk yarn drope cope softdrope; do
+    for length in 2048 4096 8192 16384; do
+        CUDA_VISIBLE_DEVICES=0 micromamba run -n softdrope python \
+            ruler/scripts/eval_hf.py \
+            --model-path checkpoints/${method}_qwen0.5b \
+            --data-dir data/ruler/L${length} \
+            --task niah_single_1 \
+            --device cuda:0 \
+            --output results/evaluation/eval_${method}_L${length}.json
+    done
+done
+```
+
+### 阶段三：结果分析
+
+- [ ] 对比各方法在不同长度上的准确率
+- [ ] 频率-band分析
+- [ ] 消融实验（Θcutoff参数、重校准步数）
+- [ ] 可视化注意力距离分布
+
+---
 
 ## 参考文献
 
