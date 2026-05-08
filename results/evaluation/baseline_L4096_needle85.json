@@ -1,0 +1,7 @@
+{
+  "task": "niah_single_1",
+  "model": "/data2/weichu/CS7352/\u5927\u4f5c\u4e1a/checkpoints/Qwen2-0.5B",
+  "accuracy": 0.0,
+  "correct": 0,
+  "total": 50
+}

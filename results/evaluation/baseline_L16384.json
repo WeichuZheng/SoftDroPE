@@ -1,0 +1,7 @@
+{
+  "task": "niah_single_1",
+  "model": "checkpoints/Qwen2-0.5B",
+  "accuracy": 1.0,
+  "correct": 10,
+  "total": 10
+}

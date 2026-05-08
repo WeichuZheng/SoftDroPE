@@ -1,7 +1,0 @@
-{
-  "task": "niah_single_1",
-  "model": "/data1/weichu/woshi/Qwen2.5-7B-Instruct",
-  "accuracy": 0.5,
-  "correct": 5,
-  "total": 10
-}
