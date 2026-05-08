@@ -1,0 +1,102 @@
+{
+  "baseline_L8192_needle85": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "baseline_L8192_needle88": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "baseline_L8192_needle90": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "baseline_L8192_needle92": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "baseline_L8192_needle95": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "pi_L8192_needle85": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "pi_L8192_needle88": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "pi_L8192_needle90": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "pi_L8192_needle92": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "pi_L8192_needle95": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "ntk_L8192_needle85": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "ntk_L8192_needle88": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "ntk_L8192_needle90": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "ntk_L8192_needle92": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "ntk_L8192_needle95": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "yarn_L8192_needle85": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "yarn_L8192_needle88": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "yarn_L8192_needle90": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "yarn_L8192_needle92": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  },
+  "yarn_L8192_needle95": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 30
+  }
+}
